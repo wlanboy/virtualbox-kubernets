@@ -89,5 +89,5 @@ sudo su shutdown -h now
 * don't install vms by hand
 * vms are containers too
 * play around and test things, break things early and often
-* automate everthing to be able to test anything, anytime
-* think in roles
+* automate everything to be able to rebuild anything, anytime
+* think in roles not in serverboxes
