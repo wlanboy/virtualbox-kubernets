@@ -16,17 +16,17 @@ wget https://download.virtualbox.org/virtualbox/6.1.18/VirtualBox-6.1.18-142142-
 ```
 
 # Install a package manager
-* OS X:
+* OS X: homebrew
 ```
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
-* Windows: (powershell)
+* Windows: chocolatey ( with powershell)
 ```
 Set-ExecutionPolicy AllSigned
 Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 ```
 
-# Install tools
+# Install needed tools 
 * OS X:
 ```
 brew cask install vagrant
@@ -48,3 +48,22 @@ git clone https://github.com/wlanboy/virtualbox-kubernets.git
 cd homelab
 vagrant up
 ```
+
+# Destroy VM (if you made something wrong)
+```
+cd ~/virtualbox-kubernets/homelab
+vagrant destroy -f
+```
+
+# Start over again
+```
+cd ~/virtualbox-kubernets/homelab
+vagrant up
+```
+
+# Key takeaways
+* don't install vms by hand
+* vms are containers too
+* play around and test thins, break things early
+* automate everthing to be able to test and play around
+* think in roles
