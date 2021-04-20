@@ -65,16 +65,16 @@ vagrant up
 # Configure your local kubectl
 ```
 mkdir -p ${HOME}/.kube
-vagrant ssh control -c "cat /home/vagrant/token.txt" > ${HOME}/.kube/token.txt
-vagrant ssh control -c "cat /home/vagrant/config.txt" > ${HOME}/.kube/config
+vagrant ssh -c "cat /home/vagrant/token.txt" > ${HOME}/.kube/token.txt
+vagrant ssh -c "cat /home/vagrant/config.txt" > ${HOME}/.kube/config
 kubectl get nodes
 ```
 # Access kubernetes dashboard
 ```
 cat ${HOME}/.kube/token.txt # <-- this is your token to login
 kubectl proxy
-use your browser: http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/
 ```
+* use your browser: http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/
 
 # Key takeaways
 * don't install vms by hand
