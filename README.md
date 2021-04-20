@@ -79,6 +79,12 @@ kubectl proxy
 # Deploy a Spring Boot Microservice
 * see: https://github.com/wlanboy/virtualbox-kubernets/blob/main/deploy-a-service.md
 
+# Shutdown VM
+```
+vagrant ssh
+sudo su shutdown -h now
+```
+
 # Key takeaways
 * don't install vms by hand
 * vms are containers too
