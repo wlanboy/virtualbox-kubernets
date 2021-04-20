@@ -20,10 +20,10 @@ Vagrant.configure("2") do |config|
    config.vm.disk :disk, size: "50GB", primary: true
 
    config.vm.provider "virtualbox" do |vb|
-     vb.gui = false
+     vb.gui = false # keep it in background without console window
      vb.memory = "4098"
      vb.cpus = 4
-     vb.name = "kubernets"
+     vb.name = "kube"
    end
 
    config.vm.provision "file", source: "control.yml", destination: "/home/vagrant/control.yml"
