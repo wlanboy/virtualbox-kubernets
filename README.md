@@ -76,6 +76,9 @@ kubectl proxy
 ```
 * use your browser: http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/
 
+# Deploy a Spring Boot Microservice
+* see: https://github.com/wlanboy/virtualbox-kubernets/blob/main/deploy-a-service.md
+
 # Key takeaways
 * don't install vms by hand
 * vms are containers too
