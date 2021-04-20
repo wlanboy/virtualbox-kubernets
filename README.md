@@ -79,6 +79,6 @@ kubectl proxy
 # Key takeaways
 * don't install vms by hand
 * vms are containers too
-* play around and test thins, break things early
-* automate everthing to be able to test and play around
+* play around and test things, break things early and often
+* automate everthing to be able to test anything, anytime
 * think in roles
