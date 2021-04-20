@@ -41,6 +41,7 @@ choco install kubernetes-helm
 ```
 
 # Setup VM
+> Please look at the Vagrant file first and adjust the values!
 * at least we can now have ONE documentation
 ```
 cd ~
@@ -59,6 +60,14 @@ vagrant destroy -f
 ```
 cd ~/virtualbox-kubernets/homelab
 vagrant up
+```
+
+# Configure your local kubectl
+```
+mkdir -p ${HOME}/.kube
+vagrant ssh control -c "cat /home/vagrant/token.txt" > ${HOME}/.kube/token.txt
+vagrant ssh control -c "cat /home/vagrant/config.txt" > ${HOME}/.kube/config
+kubectl get nodes
 ```
 
 # Key takeaways
