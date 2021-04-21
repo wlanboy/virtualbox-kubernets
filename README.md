@@ -84,6 +84,11 @@ kubectl proxy
 vagrant ssh
 sudo su shutdown -h now
 ```
+# Setup Multinode cluster
+* change folder to 'homelabwithnodes'
+* use 'vagrant ssh kubecontrol' instead of 'vagrant ssh'
+* change NODE_COUNT var in Vagrant file to add additional hosts
+* run 'vagrant up' after changing the NODE_COUNT, it will only add new vms
 
 # Key takeaways
 * don't install vms by hand
