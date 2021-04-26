@@ -57,7 +57,7 @@ External Traffic Policy:  Cluster
 Events:                   <none>
 ```
 
-#  call microservice
+#  call crudservice
 * curl http://192.168.56.100:30411/actuator/health
 * Result
 ```
