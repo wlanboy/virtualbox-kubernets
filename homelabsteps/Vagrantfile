@@ -1,0 +1,32 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# check with ifconfig/ipconfig, "look for Ethernet-Adapter VirtualBox Host-Only Network", choose on in that ip range
+CONTROL_IP = "192.168.56.50"
+
+Vagrant.configure("2") do |config|
+   config.vm.box = "generic/ubuntu2004"
+   config.vm.hostname = "simple"
+   config.vm.box_check_update = false
+   config.vm.network "private_network", ip: CONTROL_IP # <-- Host-Only network to have a static ip to use kubectl on you guest os
+
+   config.vm.disk :disk, size: "50GB", primary: true
+
+   config.vm.provider "virtualbox" do |vb|
+     vb.gui = false # keep it in background without console window
+     vb.memory = "4098"
+     vb.cpus = 2
+     vb.name = "kube"
+   end
+
+   config.vm.provision "file", source: "control.yml", destination: "/home/vagrant/control.yml"
+
+   config.vm.provision :shell do |s|
+      s.path = 'setup-system.sh'
+   end
+
+   config.vm.provision :shell do |s|
+     s.path = 'setup-packages.sh'
+   end
+
+end

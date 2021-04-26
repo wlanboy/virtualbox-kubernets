@@ -90,6 +90,10 @@ sudo su shutdown -h now
 * change NODE_COUNT var in Vagrant file to add additional hosts
 * run 'vagrant up' after changing the NODE_COUNT, it will only add new vms
 
+# Setup kubernetes on your own
+* change folder to 'homelabsteps'
+* everything is prepared. Call each command from https://github.com/wlanboy/virtualbox-kubernets/blob/main/homelab/setup-kubernets-controlnode.sh 
+
 # Key takeaways
 * don't install vms by hand
 * vms are containers too
