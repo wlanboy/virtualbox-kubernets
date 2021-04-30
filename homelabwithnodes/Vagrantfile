@@ -4,12 +4,12 @@
 # number of worker nodes
 NODE_COUNT = 1
 # check with ifconfig/ipconfig, "look for Ethernet-Adapter VirtualBox Host-Only Network", choose on in that ip range
-CONTROL_IP = "192.168.56.100"
+CONTROL_IP = "192.168.50.100"
 # the private LAN for inter-node communication - this has to be an unique class b network (look at you openvpn subnets too)
 KUBE_NETWORK = "10.244.0.0/16"
 # kubeadm token generate , used to join members to the kubernets cluster
 TOKEN = "qn265f.czo0oiw8o2q5pb7n"
-PUBLIC_IP = "192.168.178.37"
+PUBLIC_IP = "192.168.56.100"
 # os
 BOX_IMAGE = "generic/ubuntu2004"
 
@@ -20,6 +20,7 @@ Vagrant.configure("2") do |config|
       subconfig.vm.hostname = "kubecontrol"
       subconfig.vm.box_check_update = false
       subconfig.vm.network "private_network", virtualbox__intnet: true, ip: CONTROL_IP # <-- set flag to avoid Host-Only network - vms have to communicate with each other
+      subconfig.vm.network "private_network", ip: PUBLIC_IP # <-- use host-only network to get access from your host
 
       subconfig.vm.disk :disk, size: "30GB", primary: true
 
@@ -51,7 +52,7 @@ Vagrant.configure("2") do |config|
       config.vm.define "kubenode#{i}" do |subconfig|
          subconfig.vm.box = BOX_IMAGE
          subconfig.vm.hostname = "kubenode#{i}"
-         subconfig.vm.network :private_network, virtualbox__intnet: true, ip: "192.168.56.#{100 + i}"
+         subconfig.vm.network :private_network, virtualbox__intnet: true, ip: "192.168.50.#{100 + i}"
 
          subconfig.vm.disk :disk, size: "20GB", primary: true
 
