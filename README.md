@@ -76,6 +76,40 @@ kubectl proxy
 ```
 * use your browser: http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/
 
+# Get cluster info
+```
+kubectl cluster-info
+Kubernetes control plane is running at https://192.168.56.100:6443
+CoreDNS is running at https://192.168.56.100:6443/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
+```
+
+# Check running pods
+```
+kubectl get pods --all-namespaces
+NAMESPACE              NAME                                         READY   STATUS      RESTARTS   AGE
+ingress-nginx          ingress-nginx-admission-create-vhv8h         0/1     Completed   0          3m48s
+ingress-nginx          ingress-nginx-admission-patch-767kf          0/1     Completed   0          3m48s
+ingress-nginx          ingress-nginx-controller-75c478c599-6s4d8    1/1     Running     0          3m48s
+kube-system            coredns-558bd4d5db-k9nmv                     1/1     Running     0          3m48s
+kube-system            coredns-558bd4d5db-qxddh                     1/1     Running     0          3m48s
+kube-system            etcd-kube                                    1/1     Running     0          4m3s
+kube-system            kube-apiserver-kube                          1/1     Running     0          4m3s
+kube-system            kube-controller-manager-kube                 1/1     Running     0          3m59s
+kube-system            kube-flannel-ds-fhwxt                        1/1     Running     0          3m48s
+kube-system            kube-proxy-cq9ff                             1/1     Running     0          3m48s
+kube-system            kube-scheduler-kube                          1/1     Running     0          3m59s
+kubernetes-dashboard   dashboard-metrics-scraper-856586f554-xqmls   1/1     Running     0          3m48s
+kubernetes-dashboard   kubernetes-dashboard-78c79f97b4-4595v        1/1     Running     0          3m48s
+```
+
+# Get node port of ingress controller
+```
+kubectl get svc -n ingress-nginx
+NAME                                 TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)                      AGE
+ingress-nginx-controller             NodePort    10.104.5.33    <none>        80:30067/TCP,443:32469/TCP   7m52s
+ingress-nginx-controller-admission   ClusterIP   10.97.167.38   <none>        443/TCP                      7m52s
+```
+
 # Deploy a Spring Boot Microservice
 * see: https://github.com/wlanboy/virtualbox-kubernets/blob/main/deploy-a-service.md
 
