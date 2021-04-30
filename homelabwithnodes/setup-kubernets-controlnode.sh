@@ -26,3 +26,16 @@ sudo cat /etc/kubernetes/admin.conf > /home/vagrant/config.txt
 
 # setup kubectl config
 sudo echo "export KUBECONFIG=/etc/kubernetes/admin.conf" >> /root/.bashrc
+
+# add ingress controller
+sudo KUBECONFIG=/etc/kubernetes/admin.conf kubectl create ns ingress-nginx
+sudo KUBECONFIG=/etc/kubernetes/admin.conf kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.43.0/deploy/static/provider/baremetal/deploy.yaml
+
+# setup ingress controller
+cat > nginx-host-networking.yaml <<EOF
+spec:
+  template:
+    spec:
+      hostNetwork: true
+EOF
+sudo KUBECONFIG=/etc/kubernetes/admin.conf kubectl -n ingress-nginx patch deployment ingress-nginx-controller --patch="$(<nginx-host-networking.yaml)"
