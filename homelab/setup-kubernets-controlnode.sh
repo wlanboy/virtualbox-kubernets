@@ -4,6 +4,9 @@ set -e
 # get kubernetes images
 kubeadm config images pull
 
+# setup kubectl config
+sudo echo "export KUBECONFIG=/etc/kubernetes/admin.conf" >> /root/.bashrc
+
 # setup kubernetes controll node
 sudo kubeadm init --pod-network-cidr=${KUBE_NETWORK} \
         --token ${TOKEN} --apiserver-advertise-address=${CONTROL_IP} --apiserver-cert-extra-sans=${CONTROL_IP},${PUBLIC_IP}
@@ -23,5 +26,15 @@ token=$(sudo KUBECONFIG=/etc/kubernetes/admin.conf kubectl -n kube-system get se
 sudo KUBECONFIG=/etc/kubernetes/admin.conf kubectl -n kube-system describe secret $token |grep token: |awk '{print $2}' > /home/vagrant/token.txt
 sudo cat /etc/kubernetes/admin.conf > /home/vagrant/config.txt
 
-# setup kubectl config
-sudo echo "export KUBECONFIG=/etc/kubernetes/admin.conf" >> /root/.bashrc
+# add ingress controller
+sudo KUBECONFIG=/etc/kubernetes/admin.conf kubectl create ns ingress-nginx
+sudo KUBECONFIG=/etc/kubernetes/admin.conf kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.43.0/deploy/static/provider/baremetal/deploy.yaml
+
+# setup ingress controller
+cat > nginx-host-networking.yaml <<EOF
+spec:
+  template:
+    spec:
+      hostNetwork: true
+EOF
+sudo KUBECONFIG=/etc/kubernetes/admin.conf kubectl -n ingress-nginx patch deployment ingress-nginx-controller --patch="$(<nginx-host-networking.yaml)"
