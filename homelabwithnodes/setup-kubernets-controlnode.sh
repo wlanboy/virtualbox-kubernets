@@ -6,7 +6,7 @@ kubeadm config images pull
 
 # setup kubernetes controll node
 sudo kubeadm init --pod-network-cidr=${KUBE_NETWORK} \
-        --token ${TOKEN} --apiserver-advertise-address=${CONTROL_IP} --apiserver-cert-extra-sans=${CONTROL_IP}
+        --token ${TOKEN} --apiserver-advertise-address=${CONTROL_IP} --apiserver-cert-extra-sans=${CONTROL_IP},${PUBLIC_IP}
 
 # we need a network provider for the kubernetes internal network
 #sudo KUBECONFIG=/etc/kubernetes/admin.conf kubectl apply -f /home/vagrant/kube-flannel.yml #won't work, flannel is choosing wrong eth device
