@@ -67,7 +67,17 @@ vagrant up
 mkdir -p ${HOME}/.kube
 vagrant ssh -c "cat /home/vagrant/token.txt" > ${HOME}/.kube/token.txt
 vagrant ssh -c "cat /home/vagrant/config.txt" > ${HOME}/.kube/config
-kubectl get nodes
+kubectl cluster-info
+kubectl get nodes -o wide
+```
+# Configure your local kubectl with nodes
+```
+mkdir -p ${HOME}/.kube
+vagrant ssh kubecontrol -c "cat /home/vagrant/token.txt" > ${HOME}/.kube/token.txt
+vagrant ssh kubecontrol -c "cat /home/vagrant/config.txt" > ${HOME}/.kube/config
+sed -i 's/192.168.50.100/192.168.56.100/g' ${HOME}/.kube/config 
+kubectl cluster-info
+kubectl get nodes -o wide
 ```
 # Access kubernetes dashboard
 ```
