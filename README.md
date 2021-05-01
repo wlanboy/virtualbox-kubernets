@@ -66,7 +66,7 @@ vagrant up
 ```
 mkdir -p ${HOME}/.kube
 vagrant ssh -c "cat /home/vagrant/token.txt" > ${HOME}/.kube/token.txt
-vagrant ssh -c "cat /home/vagrant/config.txt" > ${HOME}/.kube/config
+vagrant ssh -c "cat /home/vagrant/.kube/config" > ${HOME}/.kube/config
 kubectl cluster-info
 kubectl get nodes -o wide
 ```
