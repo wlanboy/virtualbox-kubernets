@@ -4,7 +4,7 @@
 # check with ifconfig/ipconfig, "look for Ethernet-Adapter VirtualBox Host-Only Network", choose on in that ip range
 CONTROL_IP = "192.168.56.80"
 # the private LAN for inter-node communication - this has to be an unique class b network (look at you openvpn subnets too)
-KUBE_NETWORK = "10.10.0.0/16"
+KUBE_NETWORK = "10.244.0.0/16"
 # kubeadm token generate , used to join members to the kubernets cluster
 TOKEN = "qn265f.czo0oiw8o2q5pb7n"
 
