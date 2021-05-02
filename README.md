@@ -138,6 +138,10 @@ sudo su shutdown -h now
 * change folder to 'homelabsteps'
 * everything is prepared. Call each command from https://github.com/wlanboy/virtualbox-kubernets/blob/main/homelab/setup-kubernets-controlnode.sh 
 
+# Setup k3s
+* change folder to 'homelabrancher'
+* this will install a k3s kubernets server
+
 # Key takeaways
 * don't install vms by hand
 * vms are containers too
