@@ -8,6 +8,7 @@ kubeadm config images pull
 sudo echo "export KUBECONFIG=/etc/kubernetes/admin.conf" >> /root/.bashrc
 
 # setup kubernetes controll node
+echo "setup kubernetes controll node"
 sudo kubeadm init --pod-network-cidr=${KUBE_NETWORK} \
         --token ${TOKEN} --apiserver-advertise-address=${CONTROL_IP} --apiserver-cert-extra-sans=${CONTROL_IP},${PUBLIC_IP}
 
@@ -18,12 +19,14 @@ sudo cp -i /etc/kubernetes/admin.conf /home/vagrant/.kube/config
 sudo chown vagrant:vagrant -R /home/vagrant/.kube
 
 # we need a network provider for the kubernetes internal network
+echo "setup kubernetes flannel"
 kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 
 # first step single node, so the master has to run workloads too
 kubectl taint node kube node-role.kubernetes.io/master:NoSchedule-
 
 # add dashboard and role
+echo "setup kubernetes dashboard"
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.2.0/aio/deploy/recommended.yaml
 kubectl apply -f /home/vagrant/control.yml
 
@@ -32,6 +35,7 @@ token=$(kubectl -n kube-system get secret | grep linuxsysadmins | awk '{print $1
 kubectl -n kube-system describe secret $token |grep token: |awk '{print $2}' > /home/vagrant/token.txt
 
 # add ingress controller
+echo "setup kubernetes ingress controller"
 kubectl create ns ingress-nginx
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.43.0/deploy/static/provider/baremetal/deploy.yaml
 
@@ -43,3 +47,4 @@ spec:
       hostNetwork: true
 EOF
 kubectl -n ingress-nginx patch deployment ingress-nginx-controller --patch="$(<nginx-host-networking.yaml)"
+echo "setup kubernetes done"
