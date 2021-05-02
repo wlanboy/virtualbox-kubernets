@@ -74,7 +74,7 @@ kubectl get nodes -o wide
 ```
 mkdir -p ${HOME}/.kube
 vagrant ssh kubecontrol -c "cat /home/vagrant/token.txt" > ${HOME}/.kube/token.txt
-vagrant ssh kubecontrol -c "cat /home/vagrant/config.txt" > ${HOME}/.kube/config
+vagrant ssh kubecontrol -c "cat /home/vagrant/.kube/config" > ${HOME}/.kube/config
 sed -i 's/192.168.50.100/192.168.56.100/g' ${HOME}/.kube/config 
 kubectl cluster-info
 kubectl get nodes -o wide

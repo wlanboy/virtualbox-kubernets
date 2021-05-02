@@ -19,8 +19,8 @@ sudo chown vagrant:vagrant -R /home/vagrant/.kube
 
 # we need a network provider for the kubernetes internal network
 echo "setup kubernetes network"
-#sudo KUBECONFIG=/etc/kubernetes/admin.conf kubectl apply -f /home/vagrant/kube-flannel.yml #won't work, flannel is choosing wrong eth device
-kubectl apply -f https://cloud.weave.works/k8s/net
+kubectl apply -f /home/vagrant/kube-flannel.yml 
+#kubectl apply -f https://cloud.weave.works/k8s/net
 
 # first step single node, so the master has to run workloads too
 kubectl taint node kubecontrol node-role.kubernetes.io/master:NoSchedule-
@@ -47,3 +47,6 @@ spec:
       hostNetwork: true
 EOF
 kubectl -n ingress-nginx patch deployment ingress-nginx-controller --patch="$(<nginx-host-networking.yaml)"
+
+# forward second ip to apiserver
+#sudo iptables -i eth2 -o eth1 -p tcp --dport 6443 -A FORWARD
