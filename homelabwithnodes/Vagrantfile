@@ -80,7 +80,7 @@ Vagrant.configure("2") do |config|
          end
       
          subconfig.vm.provision :shell do |s|
-            s.env = {CONTROL_IP:CONTROL_IP, TOKEN:TOKEN}
+            s.env = {CONTROL_IP:CONTROL_IP, TOKEN:TOKEN, NODE_NAME:"kubenode#{i}"}
             s.path = 'setup-node.sh'
          end
 
