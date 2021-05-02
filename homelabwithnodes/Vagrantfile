@@ -41,6 +41,10 @@ Vagrant.configure("2") do |config|
       subconfig.vm.provision :shell do |s|
         s.path = 'setup-packages.sh'
       end
+
+      subconfig.vm.provision :shell do |s|
+         s.path = 'nfs-server.sh'
+      end
    
       subconfig.vm.provision :shell do |s|
          s.env = {CONTROL_IP:CONTROL_IP, TOKEN:TOKEN, PUBLIC_IP: PUBLIC_IP, KUBE_NETWORK: KUBE_NETWORK}
@@ -69,6 +73,10 @@ Vagrant.configure("2") do |config|
       
          subconfig.vm.provision :shell do |s|
          s.path = 'setup-packages.sh'
+         end
+
+         subconfig.vm.provision :shell do |s|
+            s.path = 'nfs-clients.sh'
          end
       
          subconfig.vm.provision :shell do |s|
