@@ -4,6 +4,31 @@ Virtualbox based, vagrant provisioned Kubernets Homelab from skratch
 > Don't use minikube if you want to understand Kubernetes.
 This is not for developers searching for an easy way to k8s.
 
+# Content
+- directory homelab
+  * Single VM with k8 including network, storage, ingress provider
+  * Using kubeadm for setup
+  * Good start for beginners
+- directory homelabrancher
+  * Single VM with k3 including network provider
+  * Using Arkade, k3sup for setup
+- directory homelabsteps
+  * Single VM with all dependencies and kubeadm
+  * Good start to setup your k8 step by step
+- directory homelabwithnodes
+  * Multy VM k8 cluster including network, storage, ingress provider
+  * You can add VMs by alterting the vagrant var NODE_COUNT 
+  * Increase NODE_COUNT and run vagrat up again to add more VMs
+
+# Key points
+1. This is a tutorial 
+2. This is a playground to get in touch with k3 and k8
+3. Normally you have to choose your own network provider, see: https://kubernetes.io/docs/concepts/cluster-administration/networking/
+4. Normally you have to choose your own storage provider, see: https://kubernetes.io/docs/concepts/storage/storage-classes/
+5. Normally you have to choose your own ingress provider, see: https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/
+6. You need an external load balancer provider too, the one from your cloud provider
+8. Kubernetes is a framework, not a toolset, see: https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/#what-kubernetes-is-not
+
 # Install Virtualbox on Windows or OS X
 * https://www.virtualbox.org/wiki/Downloads
 * OSX:
