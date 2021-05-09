@@ -111,6 +111,12 @@ kubectl proxy
 ```
 * use your browser: http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/
 
+# Access longhorn frontend
+```
+kubectl apply -f longhorn-ingress.yml
+```
+* use your browser: http://192.168.56.100:31294/
+
 # Get cluster info
 ```
 kubectl cluster-info
