@@ -33,6 +33,7 @@ Vagrant.configure("2") do |config|
 
       subconfig.vm.provision "file", source: "control.yml", destination: "/home/vagrant/control.yml"
       subconfig.vm.provision "file", source: "kube-flannel.yml", destination: "/home/vagrant/kube-flannel.yml"
+      config.vm.provision "file", source: "longhorn-ingress.yml", destination: "/home/vagrant/longhorn-ingress.yml"
 
       subconfig.vm.provision :shell do |s|
          s.path = 'setup-system.sh'
@@ -50,6 +51,10 @@ Vagrant.configure("2") do |config|
          s.env = {CONTROL_IP:CONTROL_IP, TOKEN:TOKEN, PUBLIC_IP: PUBLIC_IP, KUBE_NETWORK: KUBE_NETWORK}
          s.path = 'setup-kubernets-controlnode.sh'
       end
+
+      config.vm.provision :shell do |s|
+         s.path = 'longhorn.sh'
+      end  
    end
 
    (1..NODE_COUNT).each do |i|
