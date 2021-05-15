@@ -227,4 +227,4 @@ sudo su shutdown -h now
 
 # Current deprication warings
 * policy/v1beta1 PodSecurityPolicy is deprecated in v1.21+, unavailable in v1.25+, see: https://kubernetes.io/docs/reference/using-api/deprecation-guide/#psp-v125
-* 
+
