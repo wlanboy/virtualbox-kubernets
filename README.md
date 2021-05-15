@@ -124,7 +124,7 @@ Kubernetes control plane is running at https://192.168.56.100:6443
 CoreDNS is running at https://192.168.56.100:6443/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
 ```
 
-# Check running pods
+# Check running pods (single node)
 ```
 kubectl get pods --all-namespaces
 NAMESPACE              NAME                                         READY   STATUS      RESTARTS   AGE
@@ -141,6 +141,51 @@ kube-system            kube-proxy-cq9ff                             1/1     Runn
 kube-system            kube-scheduler-kube                          1/1     Running     0          3m59s
 kubernetes-dashboard   dashboard-metrics-scraper-856586f554-xqmls   1/1     Running     0          3m48s
 kubernetes-dashboard   kubernetes-dashboard-78c79f97b4-4595v        1/1     Running     0          3m48s
+```
+
+# Check running pods (with nodes)
+```
+kubectl get pods --all-namespaces
+NAMESPACE              NAME                                         READY   STATUS      RESTARTS   AGE
+ingress-nginx          ingress-nginx-admission-create-r4cns         0/1     Completed   0          5m30s
+ingress-nginx          ingress-nginx-admission-patch-mm42b          0/1     Completed   2          5m30s
+ingress-nginx          ingress-nginx-controller-75c478c599-6pkr5    1/1     Running     0          5m29s
+kube-system            coredns-558bd4d5db-ls6nj                     1/1     Running     0          5m29s
+kube-system            coredns-558bd4d5db-nfr6z                     1/1     Running     0          5m29s
+kube-system            etcd-kubecontrol                             1/1     Running     0          5m43s
+kube-system            kube-apiserver-kubecontrol                   1/1     Running     0          5m43s
+kube-system            kube-controller-manager-kubecontrol          1/1     Running     0          5m46s
+kube-system            kube-flannel-ds-5wqdp                        1/1     Running     0          2m56s
+kube-system            kube-flannel-ds-tfh7d                        1/1     Running     0          5m30s
+kube-system            kube-proxy-5rg2s                             1/1     Running     0          5m30s
+kube-system            kube-proxy-t447h                             1/1     Running     0          2m56s
+kube-system            kube-scheduler-kubecontrol                   1/1     Running     0          5m43s
+kubernetes-dashboard   dashboard-metrics-scraper-856586f554-5rrzp   1/1     Running     0          5m29s
+kubernetes-dashboard   kubernetes-dashboard-78c79f97b4-x4vwv        1/1     Running     0          5m29s
+longhorn-system        csi-attacher-5dcdcd5984-f4qlq                1/1     Running     0          4m25s
+longhorn-system        csi-attacher-5dcdcd5984-npclz                1/1     Running     0          4m25s
+longhorn-system        csi-attacher-5dcdcd5984-r4k2b                1/1     Running     0          4m25s
+longhorn-system        csi-provisioner-5c9dfb6446-rqxvx             1/1     Running     0          4m25s
+longhorn-system        csi-provisioner-5c9dfb6446-vwjfc             1/1     Running     0          4m25s
+longhorn-system        csi-provisioner-5c9dfb6446-zrds8             1/1     Running     0          4m25s
+longhorn-system        csi-resizer-6696d857b6-h9dwc                 1/1     Running     0          4m25s
+longhorn-system        csi-resizer-6696d857b6-k4wxw                 1/1     Running     0          4m25s
+longhorn-system        csi-resizer-6696d857b6-zgp8x                 1/1     Running     0          4m25s
+longhorn-system        csi-snapshotter-96bfff7c9-l2frg              1/1     Running     0          4m24s
+longhorn-system        csi-snapshotter-96bfff7c9-q2jzn              1/1     Running     0          4m24s
+longhorn-system        csi-snapshotter-96bfff7c9-tpm9c              1/1     Running     0          4m24s
+longhorn-system        engine-image-ei-611d1496-5p42w               1/1     Running     0          2m26s
+longhorn-system        engine-image-ei-611d1496-wnxvb               1/1     Running     0          4m37s
+longhorn-system        instance-manager-e-0dea7bab                  1/1     Running     0          4m37s
+longhorn-system        instance-manager-e-8a8af286                  1/1     Running     0          116s
+longhorn-system        instance-manager-r-197160bf                  1/1     Running     0          4m36s
+longhorn-system        instance-manager-r-bbe3230c                  1/1     Running     0          115s
+longhorn-system        longhorn-csi-plugin-262gd                    2/2     Running     0          4m24s
+longhorn-system        longhorn-csi-plugin-42hxl                    2/2     Running     0          2m26s
+longhorn-system        longhorn-driver-deployer-ccb9974d5-6ghwh     1/1     Running     0          5m29s
+longhorn-system        longhorn-manager-4q47x                       1/1     Running     0          2m26s
+longhorn-system        longhorn-manager-df55b                       1/1     Running     0          5m13s
+longhorn-system        longhorn-ui-5b864949c4-499vx                 1/1     Running     0          5m29s
 ```
 
 # Get node port of ingress controller
@@ -179,3 +224,7 @@ sudo su shutdown -h now
 * play around and test things, break things early and often
 * automate everything to be able to rebuild anything, anytime
 * think in roles not in serverboxes
+
+# Current deprication warings
+* policy/v1beta1 PodSecurityPolicy is deprecated in v1.21+, unavailable in v1.25+, see: https://kubernetes.io/docs/reference/using-api/deprecation-guide/#psp-v125
+* 
