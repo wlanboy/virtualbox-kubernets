@@ -13,7 +13,7 @@ echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] 
 # reload packages
 sudo apt-get update
 # install dependencies
-sudo apt-get install -y nano htop apt-transport-https ca-certificates curl gnupg2 software-properties-common lsb-release wget sshfs openssl
+sudo apt-get install -y nano htop apt-transport-https ca-certificates curl gnupg2 software-properties-common lsb-release wget sshfs openssl net-tools nfs-common
 
 # install container runtime
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io
