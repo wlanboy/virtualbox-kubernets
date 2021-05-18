@@ -12,8 +12,8 @@ This is not for developers searching for an easy way to k8s.
 - directory homelabrancher
   * Single VM with k3 including network provider
   * Using Arkade, k3sup for setup
-- directory homelabsteps
-  * Single VM with all dependencies and kubeadm
+- directory homelabstepbystep
+  * Single VM with all dependencies, java build tools and kubectl
   * Good start to setup your k8 step by step
 - directory homelabwithnodes
   * Multy VM k8 cluster including network, storage, ingress provider

@@ -12,6 +12,9 @@ sudo apt-get update
 # install dependencies
 sudo apt-get install -y nano htop apt-transport-https ca-certificates curl gnupg2 software-properties-common lsb-release wget sshfs openssl net-tools nfs-common
 
+# install java build tools
+sudo apt-get install openjdk-11-jdk-headless maven
+
 # install container runtime
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io
 
