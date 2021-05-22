@@ -10,6 +10,17 @@ sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://pack
 echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
 echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
+# enable apt cache
+if [ "$ENABLE_APT_CAHE" = true ] ; then
+    echo "Acquire::http::Proxy \"${LOCAL_APT_CACHE_URL}\";" | sudo tee /etc/apt/apt.conf.d/00proxy 
+
+    find /etc/apt/sources.list /etc/apt/sources.list.d/ \
+    -type f -exec sed -Ei 's!http://!'${LOCAL_APT_CACHE_URL}'/!g' {} \;
+
+    find /etc/apt/sources.list /etc/apt/sources.list.d/ \
+    -type f -exec sed -Ei 's!https://!'${LOCAL_APT_CACHE_URL}'/!g' {} \;
+fi
+
 # reload packages
 sudo apt-get update
 # install dependencies

@@ -7,6 +7,8 @@ CONTROL_IP = "192.168.56.80"
 KUBE_NETWORK = "10.244.0.0/16"
 # kubeadm token generate , used to join members to the kubernets cluster
 TOKEN = "qn265f.czo0oiw8o2q5pb7n"
+ENABLE_APT_CAHE = "false"
+LOCAL_APT_CACHE_URL = "http://192.168.178.41:3142"
 
 Vagrant.configure("2") do |config|
    config.vm.box = "generic/ubuntu2004"
@@ -30,6 +32,7 @@ Vagrant.configure("2") do |config|
    end
 
    config.vm.provision :shell do |s|
+     s.env = {LOCAL_APT_CACHE_URL:LOCAL_APT_CACHE_URL, ENABLE_APT_CAHE:ENABLE_APT_CAHE}
      s.path = 'setup-packages.sh'
    end
 
