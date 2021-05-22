@@ -28,6 +28,7 @@ This is not for developers searching for an easy way to k8s.
 5. Normally you have to choose your own ingress provider, see: https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/
 6. You need an external load balancer provider too, the one from your cloud provider
 8. Kubernetes is a framework, not a toolset, see: https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/#what-kubernetes-is-not
+9. Consider to use a local apt cache server to minimize traffic
 
 # Install Virtualbox on Windows or OS X
 * https://www.virtualbox.org/wiki/Downloads
