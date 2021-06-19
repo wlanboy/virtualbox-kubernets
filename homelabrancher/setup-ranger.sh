@@ -28,7 +28,8 @@ kubectl config set-context default
 kubectl get node -o wide
 
 echo "setup kubernetes flannel"
-kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+#kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.
+kubectl apply -f /home/vagrant/kube-flannel.yml
 
 echo "setup kubernetes dashboard"
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.2.0/aio/deploy/recommended.yaml
