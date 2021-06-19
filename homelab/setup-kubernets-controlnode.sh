@@ -20,7 +20,8 @@ sudo chown vagrant:vagrant -R /home/vagrant/.kube
 
 # we need a network provider for the kubernetes internal network
 echo "setup kubernetes flannel"
-kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+#kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+kubectl apply -f /home/vagrant/kube-flannel.yml
 
 # first step single node, so the master has to run workloads too
 kubectl taint node kube node-role.kubernetes.io/master:NoSchedule-
