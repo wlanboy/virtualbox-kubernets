@@ -29,6 +29,7 @@ This is not for developers searching for an easy way to k8s.
 6. You need an external load balancer provider too, the one from your cloud provider
 8. Kubernetes is a framework, not a toolset, see: https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/#what-kubernetes-is-not
 9. Consider to use a local apt cache server to minimize traffic
+10. We have to patch Flannel to use the second iface. First Interface in Virtualbox is natted.
 
 # Install Virtualbox on Windows or OS X
 * https://www.virtualbox.org/wiki/Downloads
