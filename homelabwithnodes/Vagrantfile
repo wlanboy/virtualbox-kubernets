@@ -35,7 +35,7 @@ Vagrant.configure("2") do |config|
       end
 
       ## add you public key to vm
-      #config.vm.provision "file", source: "~/.ssh/id_rsa.pub.pub", destination: "/home/vagrant/.ssh/vagrant.pub"
+      #config.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "/home/vagrant/.ssh/vagrant.pub"
       #config.vm.provision "shell", inline: "cat /home/vagrant/.ssh/vagrant.pub >> /home/vagrant/.ssh/authorized_keys"
 
       subconfig.vm.provision "file", source: "control.yml", destination: "/home/vagrant/control.yml"
