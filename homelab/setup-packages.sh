@@ -28,6 +28,7 @@ sudo apt-get install -y nano htop apt-transport-https ca-certificates curl gnupg
 
 # install container runtime
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io
+sudo adduser vagrant docker
 
 # install kubernetes tools and mark them to be not upgradeable
 sudo apt-get install -y kubelet kubeadm kubectl
