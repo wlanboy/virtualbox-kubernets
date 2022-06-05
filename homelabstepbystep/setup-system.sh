@@ -14,6 +14,10 @@ cat > /etc/docker/daemon.json <<EOF
 }
 EOF
 
+# setup network
+sudo sysctl -w net.ipv4.ip_forward=1
+sudo sed -i 's/#net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/g' /etc/sysctl.conf 
+
 # kubernets does not like swap but ubuntu does
 sudo swapoff -a
 sudo sed -i '/ swap / s/^/#/' /etc/fstab
