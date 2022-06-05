@@ -30,6 +30,10 @@ sudo apt-get install -y nano htop apt-transport-https ca-certificates curl gnupg
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io
 sudo adduser vagrant docker
 
+# fix kubeadm pull image bug with containerd
+sudo sed -i '/disabled_plugins/s/^/#/g' /etc/containerd/config.toml
+sudo systemctl restart containerd.service
+
 # install kubernetes tools and mark them to be not upgradeable
 sudo apt-get install -y kubelet kubeadm kubectl
 sudo apt-mark hold kubelet kubeadm kubectl
