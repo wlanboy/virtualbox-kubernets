@@ -28,7 +28,19 @@ sudo apt-get install -y nano htop apt-transport-https ca-certificates curl gnupg
 
 # install container runtime
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io
+sudo adduser vagrant docker
+
+# fix kubeadm pull image bug with containerd
+sudo sed -i '/disabled_plugins/s/^/#/g' /etc/containerd/config.toml
+sudo systemctl restart containerd.service
 
 # install kubernetes tools and mark them to be not upgradeable
 sudo apt-get install -y kubelet kubeadm kubectl
 sudo apt-mark hold kubelet kubeadm kubectl
+
+# install tools
+cd ~
+
+wget https://get.helm.sh/helm-v3.9.0-linux-amd64.tar.gz
+tar -zxvf helm-v3.9.0-linux-amd64.tar.gz
+sudo cp linux-amd64/helm /usr/local/bin/helm
