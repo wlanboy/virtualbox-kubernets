@@ -14,6 +14,10 @@ cat > /etc/docker/daemon.json <<EOF
 }
 EOF
 
+# setup network
+sudo sysctl -w net.ipv4.ip_forward=1
+sudo sed -i 's/#net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/g' /etc/sysctl.conf 
+
 cat > /etc/sysctl.d/k8s.conf <<EOF
 net.bridge.bridge-nf-call-ip6tables = 1
 net.bridge.bridge-nf-call-iptables = 1
