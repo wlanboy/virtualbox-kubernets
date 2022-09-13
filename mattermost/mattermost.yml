@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mattermost-app
+  labels:
+    app: mattermost-app
+    tier: app
+  namespace: mattermost
+spec:
+  selector:
+    matchLabels:
+      app: mattermost-app
+  template:
+    metadata:
+      labels:
+        app: mattermost-app
+    spec:
+      containers:
+      - name: mattermost-app
+        image: "mattermost/mattermost-team-edition:release-7.1"
+        env:
+        - name: MM_CONFIG
+          value: "postgres://postgresadmin:postgresadmin@postgres:5432/postgresdb?sslmode=disable"
+        ports:
+        - containerPort: 8065
+          name: http
+        volumeMounts:
+        # optional persistent storage
+        #- name: appdata
+          #mountPath: /mattermost/data
+        - name: etclocaltime
+          mountPath: /etc/localtime
+          readOnly: true
+      volumes:
+      #- name: appdata
+        #persistentVolumeClaim:
+        #  claimName: mattermost-app
+      - name: etclocaltime
+        hostPath:
+          path: /etc/localtime
