@@ -1,6 +1,8 @@
 # virtualbox-kubernets
 Virtualbox based, vagrant provisioned Kubernets Homelab from skratch
 
+> looking for a simpler way? use the kind version: https://github.com/wlanboy/vagrantkind
+
 > Don't use minikube if you want to understand Kubernetes.
 This is not for developers searching for an easy way to k8s.
 
