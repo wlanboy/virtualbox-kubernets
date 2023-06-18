@@ -11,7 +11,7 @@ KUBE_NETWORK = "10.244.0.0/16"
 TOKEN = "qn265f.czo0oiw8o2q5pb7n"
 PUBLIC_IP = "192.168.56.100"
 # os
-BOX_IMAGE = "generic/ubuntu2004"
+BOX_IMAGE = "generic/ubuntu2204"
 # apt cache
 ENABLE_APT_CAHE = "false"
 LOCAL_APT_CACHE_URL = "http://192.168.178.41:3142"
