@@ -7,6 +7,11 @@ Virtualbox based, vagrant provisioned Kubernets Homelab from skratch
 This is not for developers searching for an easy way to k8s.
 
 # Content
+- directory debian-k3s
+  * Single minimal Debian based VM
+  * Using k3s
+  * Installing Calico, Metallb and Istio
+  * Ideal minimal starting place for Kubernetes
 - directory homelab
   * Single VM with k8 including network, storage, ingress provider
   * Using kubeadm for setup
@@ -21,6 +26,10 @@ This is not for developers searching for an easy way to k8s.
   * Multy VM k8 cluster including network, storage, ingress provider
   * You can add VMs by alterting the vagrant var NODE_COUNT 
   * Increase NODE_COUNT and run vagrat up again to add more VMs
+- mattermost
+  * Kubernets files for a mattermost instance
+- postgresqlservice
+  * Kubernets files for a PostgreSQL instance
 
 # Key points
 1. This is a tutorial 
