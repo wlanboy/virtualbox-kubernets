@@ -1,0 +1,35 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+PUBLIC_IP = "192.168.178.170"
+BOX_IMAGE = "debian/bookworm64"
+BOX_NAME = "k3s"
+Vagrant.configure("2") do |config|
+  config.vm.box = BOX_IMAGE
+  config.vm.hostname = BOX_NAME
+  config.vm.network :public_network, :dev => 'br0', :type => 'bridge', :ip => PUBLIC_IP
+  config.vm.disk :disk, size: "50GB", primary: true
+  
+   config.vm.provider "virtualbox" do |vb|
+     vb.gui = false 
+     vb.memory = "6024"
+     vb.cpus = 4
+     vb.name = BOX_NAME
+   end
+	
+   config.vm.provider :libvirt do |domain|
+    domain.cpu_mode = 'host-passthrough'
+    domain.graphics_type = 'none'
+    domain.memory = 6024
+    domain.cpus = 4
+    domain.features = ['acpi', 'apic', 'pae' ]
+    domain.autostart = true
+  end
+
+  config.vm.provision "shell", privileged: false, path: "packages.sh"
+  config.vm.provision "shell", privileged: false, path: "tools.sh"
+  config.vm.provision "shell", privileged: false, path: "setup.sh"
+  
+  config.vm.provision "shell", inline: <<-SHELL
+    echo "done"
+  SHELL
+end
