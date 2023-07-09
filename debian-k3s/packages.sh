@@ -2,7 +2,7 @@
 set -e
 export DEBIAN_FRONTEND=noninteractive
 
-sudo apt-get install ca-certificates curl gnupg nano htop apt-transport-https ca-certificates gnupg2 software-properties-common lsb-release wget net-tools git
+sudo apt-get install -y ca-certificates curl gnupg nano htop apt-transport-https ca-certificates gnupg2 software-properties-common lsb-release wget net-tools git
 curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
 
 sudo install -m 0755 -d /etc/apt/keyrings
