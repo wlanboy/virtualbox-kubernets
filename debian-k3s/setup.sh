@@ -3,6 +3,7 @@ set -e
 
 echo "installing k3s"
 curl -sfL https://get.k3s.io | K3S_KUBECONFIG_MODE="644" INSTALL_K3S_CHANNEL=stable INSTALL_K3S_EXEC="--disable=traefik --disable=servicelb --node-external-ip=192.168.178.22" sh -
+mkdir ~/.kube
 sudo cp -i /etc/rancher/k3s/k3s.yaml ~/.kube/config
 sudo chown $USER:$USER ~/.kube/config
 
