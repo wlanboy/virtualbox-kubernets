@@ -12,4 +12,4 @@ sudo cp linux-amd64/helm /usr/local/bin
 
 wget https://github.com/istio/istio/releases/download/1.17.2/istio-1.17.2-linux-amd64.tar.gz
 tar -zxvf istio-1.17.2-linux-amd64.tar.gz
-cp istio-1.17.2/bin/istioctl /usr/local/bin
+sudo cp istio-1.17.2/bin/istioctl /usr/local/bin
